@@ -2,7 +2,7 @@ import os
 
 from dj_database_url import config as db_config
 
-from core.helpers import DotEnvReader
+from core.helpers import DotEnvReader, EnvValue
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -11,11 +11,11 @@ DotEnvReader(os.path.join(BASE_DIR, '.env')).read()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-PRODUCTION = bool(int(os.getenv('PRODUCTION', 0)))
+PRODUCTION = EnvValue('PRODUCTION', False).to_bool()
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.getenv('DEBUG', not PRODUCTION)))
+DEBUG = EnvValue('DEBUG', not PRODUCTION).to_bool()
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '' if PRODUCTION else '*').split(',')
+ALLOWED_HOSTS = EnvValue('ALLOWED_HOSTS', '' if PRODUCTION else '*').to_list()
 
 DJANGO_APPS = [
     'django.contrib.admin',

@@ -1,5 +1,6 @@
 import os
 import re
+from typing import List
 
 
 class DotEnvReader:
@@ -18,3 +19,14 @@ class DotEnvReader:
                              re.sub(r'( +)?#(.+)?', '', line))
             if match:
                 os.environ.setdefault(*match.groupdict().values())
+
+
+class EnvValue:
+    def __init__(self, key: str, default_value=None):
+        self.value = os.getenv(key, default_value)
+
+    def to_bool(self) -> bool:
+        return bool(int(self.value))
+
+    def to_list(self, separator=',') -> List:
+        return self.value.split(separator)
