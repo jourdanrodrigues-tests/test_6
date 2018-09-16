@@ -8,6 +8,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DotEnvReader(os.path.join(BASE_DIR, '.env')).read()
 
+# If true, runs the celery server in the same process of the Django app
+CELERY_ALWAYS_EAGER = EnvValue('CELERY_ALWAYS_EAGER', False).to_bool()
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
