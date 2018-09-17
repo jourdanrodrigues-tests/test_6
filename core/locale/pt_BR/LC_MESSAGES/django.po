@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-16 22:50+0000\n"
+"POT-Creation-Date: 2018-09-17 02:15+0000\n"
 "Language-Team: Portuguese <pt-br@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,6 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/models.py:12
+#: app/models/_customer.py:25
 msgid "billing day"
 msgstr "dia do pagamento"
+
+#: app/models/_customer.py:41
+msgid "date"
+msgstr "data"
