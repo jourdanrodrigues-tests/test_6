@@ -2,6 +2,7 @@ from rest_framework import mixins, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from app.filters import CustomerUserFilter
 from app.models import ChocolatePreference, Order
 from app.serializers import ChocolatePreferenceSerializer, OrderSerializer
 
@@ -12,11 +13,9 @@ class ChocolatePreferenceViewSet(
     mixins.UpdateModelMixin,
 ):
     permission_classes = (IsAuthenticated,)
+    filter_backends = (CustomerUserFilter,)
     serializer_class = ChocolatePreferenceSerializer
     queryset = ChocolatePreference.objects.all()
-
-    def get_queryset(self):
-        return self.queryset.filter(customer__user=self.request.user)
 
     def list(self, request):
         """
@@ -30,8 +29,6 @@ class ChocolatePreferenceViewSet(
 
 class OrderViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin):
     permission_classes = (IsAuthenticated,)
+    filter_backends = (CustomerUserFilter,)
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
-
-    def get_queryset(self):
-        return self.queryset.filter(customer__user=self.request.user)
