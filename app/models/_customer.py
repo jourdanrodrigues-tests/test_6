@@ -24,9 +24,10 @@ class CustomerManager(BaseManager.from_queryset(CustomerQueryset)):
 
 
 class Customer(models.Model):
+    BILLING_DAY_ALLOWED_RANGE = range(1, 28)
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     billing_day = models.PositiveSmallIntegerField(_('billing day'))
-    BILLING_DAY_ALLOWED_RANGE = range(1, 28)
 
     objects = CustomerManager()
 
@@ -38,6 +39,18 @@ class Customer(models.Model):
 
     class BillingDayNotAllowed(Exception):
         pass
+
+
+class Subscription(models.Model):
+    MONTHLY = 1
+    SIX_MONTHS = 2
+    LENGTH_CHOICES = (
+        (MONTHLY, _('Monthly')),
+        (SIX_MONTHS, _('6 months')),
+    )
+
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
+    length = models.PositiveSmallIntegerField(choices=LENGTH_CHOICES)
 
 
 class CustomerBillEvent(models.Model):
