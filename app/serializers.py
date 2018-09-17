@@ -19,6 +19,7 @@ class ChocolatePreferenceSerializer(SaveWithCustomerMixin, serializers.ModelSeri
 
 
 class OrderSerializer(SaveWithCustomerMixin, serializers.ModelSerializer):
+
     class Meta:
         model = Order
-        fields = ('customer', 'closed', 'chocolate_selection')
+        fields = ('closed', 'chocolate_selection', 'value')

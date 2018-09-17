@@ -60,3 +60,4 @@ class Order(models.Model):
     closed = models.BooleanField(_('closed'), default=False)
     # This is a simplification of what would be the order model
     chocolate_selection = models.CharField(_('chocolate selection'), max_length=200)
+    value = models.FloatField(_('value'))
