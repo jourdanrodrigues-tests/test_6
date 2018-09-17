@@ -5,6 +5,8 @@ from django.db.models import QuerySet
 from django.db.models.manager import BaseManager
 from django.utils.translation import ugettext as _
 
+from app.models._models import User
+
 
 class CustomerQueryset(QuerySet):
     def that_should_be_billed(self) -> QuerySet:
@@ -22,6 +24,7 @@ class CustomerManager(BaseManager.from_queryset(CustomerQueryset)):
 
 
 class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     billing_day = models.PositiveSmallIntegerField(_('billing day'))
     BILLING_DAY_ALLOWED_RANGE = range(1, 28)
 
@@ -35,3 +38,8 @@ class Customer(models.Model):
 
     class BillingDayNotAllowed(Exception):
         pass
+
+
+class CustomerBillEvent(models.Model):
+    date = models.DateField(_('date'), default=date.today, editable=False)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='bill_events')
