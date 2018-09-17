@@ -35,8 +35,3 @@ class Customer(models.Model):
 
     class BillingDayNotAllowed(Exception):
         pass
-
-
-class CustomerBillEvent(models.Model):
-    date = models.DateField(_('date'), default=date.today, editable=False)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='bill_events')
