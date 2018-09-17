@@ -1,24 +1,6 @@
-# wine_gallery_test
+# WineGallery Test
 
-This project runs entirely on Docker containers. Make sure to [have it][docker-download] in your environment.
-
-## Using this template
-
-Run the following to create a Django project with this repo as template:
-
-```bash
-$ pip install django
-$ mkdir <your_project_name>
-$ django-admin startproject \
-  --template=https://github.com/jourdanrodrigues/django-template/archive/master.zip \
-  --extension=po,yml,md,py \
-  ${_} ./${_}
-$ # If the above fails, you might have different versions of Python.
-$ # Using "python -m django" instead of "django-admin" might fix.
-$ # "python" could also be "python2" or "python3".
-```
-
-You may remove this section from the `README.md` generated for your project.  
+This project runs entirely on Docker containers. Make sure to [have it][docker-download] in your environment.  
 
 ## Setting up development environment
 
