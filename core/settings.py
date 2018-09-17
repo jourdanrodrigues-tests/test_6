@@ -1,5 +1,6 @@
 import os
 
+import stripe
 from dj_database_url import config as db_config
 
 from core.helpers import DotEnvReader, EnvValue
@@ -7,6 +8,8 @@ from core.helpers import DotEnvReader, EnvValue
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DotEnvReader(os.path.join(BASE_DIR, '.env')).read()
+
+stripe.api_key = os.getenv('STRIPE_API_KEY')
 
 # If true, runs the celery server in the same process of the Django app
 CELERY_ALWAYS_EAGER = EnvValue('CELERY_ALWAYS_EAGER', False).to_bool()

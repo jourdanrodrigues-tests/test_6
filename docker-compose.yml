@@ -18,6 +18,7 @@ services:
       - DATABASE_URL=postgres://wine_gallery_test_user:wine_gallery_test_pass@db/wine_gallery_test_db
       - PRODUCTION=1
       # Set the following in your environment or in the ".env" file
+      - STRIPE_API_KEY
       - ALLOWED_HOSTS
       - SECRET_KEY
     ports:
