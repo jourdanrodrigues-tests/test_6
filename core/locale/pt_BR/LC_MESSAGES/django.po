@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-17 15:48+0000\n"
+"POT-Creation-Date: 2018-09-17 16:54+0000\n"
 "Language-Team: Portuguese <pt-br@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,11 @@ msgstr "Mensalmente"
 msgid "6 months"
 msgstr "6 meses"
 
-#: app/models/_customer.py:140
+#: app/models/_customer.py:139
+msgid "closed"
+msgstr "fechada"
+
+#: app/models/_customer.py:141
 msgid "chocolate selection"
 msgstr "seleção de chocolates"
 

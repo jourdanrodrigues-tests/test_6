@@ -136,5 +136,6 @@ class CustomerBillEvent(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='orders')
+    closed = models.BooleanField(_('closed'), default=False)
     # This is a simplification of what would be the order model
     chocolate_selection = models.CharField(_('chocolate selection'), max_length=200)
