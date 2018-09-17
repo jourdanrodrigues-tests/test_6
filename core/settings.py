@@ -13,6 +13,7 @@ stripe.api_key = os.getenv('STRIPE_API_KEY')
 
 # If true, runs the celery server in the same process of the Django app
 CELERY_ALWAYS_EAGER = EnvValue('CELERY_ALWAYS_EAGER', False).to_bool()
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')

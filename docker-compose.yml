@@ -10,6 +10,26 @@ services:
       - POSTGRES_USER=wine_gallery_test_user
       - POSTGRES_DB=wine_gallery_test_db
 
+  redis:
+    container_name: wine_gallery_test_redis
+    image: redis:4.0
+
+  celery:
+    container_name: wine_gallery_test_celery
+    build: .
+    command: celery -A core.celery worker -l info
+    environment:
+      - DATABASE_URL=postgres://wine_gallery_test_user:wine_gallery_test_pass@db/wine_gallery_test_db
+      - CELERY_BROKER_URL=redis://redis/
+      - PRODUCTION=1
+      # Set the following in your environment or in the ".env" file
+      - STRIPE_API_KEY
+      - ALLOWED_HOSTS
+      - SECRET_KEY
+    links:
+      - redis
+      - db
+
   server:
     container_name: wine_gallery_test_server
     build: .
@@ -23,5 +43,7 @@ services:
       - SECRET_KEY
     ports:
       - "8000:8000"
+    depends_on:
+      - celery
     links:
       - db
