@@ -31,3 +31,9 @@ class ChocolateRecommendation(models.Model):
     date = models.DateTimeField(_('date'), default=datetime.now, editable=False)
 
     objects = ChocolateRecommendationManager()
+
+    def email_customer(self):
+        """
+        Sends email to customer, somehow.
+        """
+        pass

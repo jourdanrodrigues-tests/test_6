@@ -5,7 +5,8 @@ from core.celery import app
 @app.task
 def generate_recommendations():
     for customer in Customer.objects.with_preferences_set_up().that_should_receive_recommendations():
-        ChocolateRecommendation.objects.generate_from_customer(customer)
+        chocolate_recommendation = ChocolateRecommendation.objects.generate_from_customer(customer)
+        chocolate_recommendation.email_customer()
 
 
 @app.task
