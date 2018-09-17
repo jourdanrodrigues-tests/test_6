@@ -52,6 +52,17 @@ class Subscription(models.Model):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE)
     length = models.PositiveSmallIntegerField(choices=LENGTH_CHOICES)
 
+    def get_multiplier(self) -> int:
+        if self.length is Subscription.MONTHLY:
+            return 1
+        elif self.length is Subscription.SIX_MONTHS:
+            return 6
+        else:
+            raise Subscription.InvalidLengthChoice
+
+    class InvalidLengthChoice(Exception):
+        pass
+
 
 class CustomerBillEvent(models.Model):
     date = models.DateField(_('date'), default=date.today, editable=False)
