@@ -1,11 +1,13 @@
 from datetime import date
 
+import stripe
 from django.db import models
 from django.db.models import QuerySet
 from django.db.models.manager import BaseManager
 from django.utils.translation import ugettext as _
 
 from app.models._models import User
+from app.utils import Card
 
 
 class CustomerQueryset(QuerySet):
@@ -28,6 +30,7 @@ class Customer(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     billing_day = models.PositiveSmallIntegerField(_('billing day'))
+    card_token = models.CharField(max_length=200)
 
     objects = CustomerManager()
 
@@ -36,6 +39,27 @@ class Customer(models.Model):
             raise Customer.BillingDayNotAllowed
 
         super().save(force_insert, force_update, using, update_fields)
+
+    def generate_card_token(self, card: Card) -> str:
+        # Creates the card/source via Stripe (couldn't figure how to do it)
+        self.card_token = 'tok_mastercard'
+        self.save(update_fields=['card_token'])
+        return self.card_token
+
+    def charge(self, value) -> None:
+        if self.has_subscription():
+            multiplier = self.subscription.get_multiplier()
+            value *= multiplier
+
+        stripe.Charge.create(
+            amount=value,
+            currency='usd',
+            source=self.card_token,
+            description='Charge for {}'.format(self.user.email),
+        )
+
+    def has_subscription(self) -> bool:
+        return hasattr(self, 'subscription')  # OneToOneField
 
     class BillingDayNotAllowed(Exception):
         pass
