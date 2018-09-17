@@ -32,12 +32,16 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
+THIRD_APPS = [
+    'rest_framework',
+]
+
 LOCAL_APPS = [
     'core',
     'app',
 ]
 
-INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS
+INSTALLED_APPS = LOCAL_APPS + THIRD_APPS + DJANGO_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
