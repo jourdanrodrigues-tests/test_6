@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-17 02:15+0000\n"
+"POT-Creation-Date: 2018-09-17 15:48+0000\n"
 "Language-Team: Portuguese <pt-br@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -12,10 +12,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/models/_customer.py:25
+#: app/models/_customer.py:35
 msgid "billing day"
 msgstr "dia do pagamento"
 
-#: app/models/_customer.py:41
+#: app/models/_customer.py:89
+msgid "recommendation"
+msgstr "recomendação"
+
+#: app/models/_customer.py:90 app/models/_customer.py:133
+#: app/models/_models.py:12
 msgid "date"
 msgstr "data"
+
+#: app/models/_customer.py:104
+msgid "milk"
+msgstr "leite"
+
+#: app/models/_customer.py:105
+msgid "dark"
+msgstr "amargo"
+
+#: app/models/_customer.py:106
+msgid "white"
+msgstr "branco"
+
+#: app/models/_customer.py:113
+msgid "Monthly"
+msgstr "Mensalmente"
+
+#: app/models/_customer.py:114
+msgid "6 months"
+msgstr "6 meses"
+
+#: app/models/_customer.py:140
+msgid "chocolate selection"
+msgstr "seleção de chocolates"
+
+#: app/models/_models.py:11
+msgid "value"
+msgstr "valor"
